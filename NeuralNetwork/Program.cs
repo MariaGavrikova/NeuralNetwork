@@ -21,42 +21,42 @@ namespace NeuralNetwork
 
             //Learning
 
-            var input = GetImage(@"D:\Work\1.bmp", size);
+            var input = GetImage(@"TestData\1.bmp", size);
             double[,] output = Learn(input, weights, size);
 
-            input = GetImage(@"D:\Work\1_italics.bmp", size);
+            input = GetImage(@"TestData\1_italics.bmp", size);
             output = Learn(input, weights, size);
 
-            input = GetImage(@"D:\Work\1_bold.bmp", size);
+            input = GetImage(@"TestData\1_bold.bmp", size);
             output = Learn(input, weights, size);
 
             //Recognition
 
-            input = GetImage(@"D:\Work\1.bmp", size);
+            input = GetImage(@"TestData\1.bmp", size);
             output = Recognise(input, weights, size);
             Output(input, output);
 
             Console.WriteLine();
 
-            input = GetImage(@"D:\Work\1_italics.bmp", size);
+            input = GetImage(@"TestData\1_italics.bmp", size);
             output = Recognise(input, weights, size);
             Output(input, output);
 
             Console.WriteLine();
 
-            input = GetImage(@"D:\Work\1_bold.bmp", size);
+            input = GetImage(@"TestData\1_bold.bmp", size);
             output = Recognise(input, weights, size);
             Output(input, output);
 
             Console.WriteLine();
 
-            input = GetImage(@"D:\Work\2.bmp", size);
+            input = GetImage(@"TestData\2.bmp", size);
             output = Recognise(input, weights, size);
             Output(input, output);
 
             Console.WriteLine();
 
-            input = GetImage(@"D:\Work\1_hand.bmp", size);
+            input = GetImage(@"TestData\1_hand.bmp", size);
             output = Recognise(input, weights, size);
             Output(input, output);
 
@@ -136,7 +136,8 @@ namespace NeuralNetwork
         {
             double[,] result = new double[size, size];
             var whiteColor = System.Drawing.Color.FromArgb(255, 255, 255, 255);
-            using (var image = new System.Drawing.Bitmap(path))
+            var fullPath = Path.Combine(Environment.CurrentDirectory, path);
+            using (var image = new System.Drawing.Bitmap(fullPath))
             {
                 for (int i = 0; i < size; i++)
                 {
